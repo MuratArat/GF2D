@@ -28,3 +28,8 @@ Once each submodule has been made you can go into the base project src folder an
 `make`
 
 You should now have a `gf2d` binary within the root of your git repository. Executing this will start your game.
+
+In this game you play as a band of adventureres traveling in a dangerus land of enemies
+use wasd to move
+walls will block your path
+
