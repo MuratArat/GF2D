@@ -3,6 +3,10 @@
         "map_system.h": "c",
         "map_generator.h": "c",
         "gf2d_graphics.h": "c",
-        "simple_logger.h": "c"
+        "simple_logger.h": "c",
+        "sdl_ttf.h": "c",
+        "simple_json.h": "c",
+        "json_config.h": "c",
+        "gf2d_sprite.h": "c"
     }
 }

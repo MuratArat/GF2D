@@ -1,8 +1,9 @@
 #include "player.h"
 #include "map_system.h"
-#include "map_generator.h"
+#include "combat_manager.h"
 #define SCREEN_WIDTH 1216
 #define SCREEN_HEIGHT 768
+
 
 Player *player_new() {
     Player *player = (Player *)malloc(sizeof(Player));
@@ -76,18 +77,21 @@ void player_update(Player *player, const Uint8 *keys, MapGrid *map_grid)
             wrapped = 1;
         }
     }
-
     if (wrapped)
     {
         regenerate_map(map_grid); // Regenerate the map if the player wraps around
         player->position = new_position;
     }
+    else if (enter_combat(map_grid, new_position))
+    {
+        
+    }
+    
     else if (!map_grid_is_colliding(map_grid, new_position))
     {
         player->position = new_position;
     }
 }
-
 
 int map_grid_is_colliding(MapGrid *map_grid, Vector2D position)
 {
@@ -108,8 +112,30 @@ int map_grid_is_colliding(MapGrid *map_grid, Vector2D position)
     {
         return 1; // There's a collision with a wall
     }
-
     return 0; // No collision
+}
+
+void save_player_position(const char *filename, int x, int y)
+{
+    SJson *player_position = sj_object_new();
+    sj_object_insert(player_position, "x", sj_new_int(x));
+    sj_object_insert(player_position, "y", sj_new_int(y));
+
+    sj_save(player_position, filename);
+
+    sj_free(player_position);
+}
+
+int load_player_position(const char *filename, int *x, int *y)
+{
+    SJson *player_position = sj_load(filename);
+
+    sj_get_integer_value(sj_object_get_value(player_position, "x"), x);
+    sj_get_integer_value(sj_object_get_value(player_position, "y"), y);
+
+    sj_free(player_position);
+
+    return 1;
 }
 
 

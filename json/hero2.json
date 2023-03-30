@@ -1,0 +1,11 @@
+	  {
+            "id": 2,
+          "damage": 30,
+          "crit": 10,
+          "defense": 5,
+          "dodge": 5,
+          "maxhealth":100,
+          "health": 100,
+          "speed": 10,
+          "points": 0
+          }

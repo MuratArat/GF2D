@@ -29,7 +29,13 @@ Once each submodule has been made you can go into the base project src folder an
 
 You should now have a `gf2d` binary within the root of your git repository. Executing this will start your game.
 
+
 In this game you play as a band of adventureres traveling in a dangerus land of enemies
-use wasd to move
-walls will block your path
+
+GAMEPLAY
+
+use wasd to move on the overwold
+black blocks are walls and will block your path
+red blocks are enemis and will make you fight 1 of 5 enemy types
+use 0-9 to pick an attack when its your turn.
 

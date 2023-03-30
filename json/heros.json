@@ -1,0 +1,51 @@
+{
+    "hero_stats_menu": {
+      "hero": [
+        {
+          "id": 1,
+          "damage": 30,
+          "crit": 10,
+          "defense": 5,
+          "dodge": 5,
+          "maxhealth":100,
+          "health": 100,
+          "speed": 5,
+          "points": 0
+        },
+        {
+            "id": 2,
+          "damage": 30,
+          "crit": 10,
+          "defense": 5,
+          "dodge": 5,
+          "maxhealth":100,
+          "health": 100,
+          "speed": 10,
+          "points": 0
+          },
+          {
+            "id": 3,
+          "damage": 30,
+          "crit": 10,
+          "defense": 5,
+          "dodge": 5,
+          "maxhealth":100,
+          "health": 100,
+          "speed": 200,
+          "points": 0
+          },
+          {
+            "id": 4,
+          "damage": 30,
+          "crit": 10,
+          "defense": 5,
+          "dodge": 5,
+          "maxhealth":100,
+          "health": 100,
+          "speed": 100,
+          "points": 0
+          }
+      ]
+    }
+  }
+  

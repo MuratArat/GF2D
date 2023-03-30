@@ -1,9 +1,53 @@
 #include "simple_logger.h"
-
+#include <SDL_ttf.h>
 #include "gfc_list.h"
 
 #include "gf2d_draw.h"
 #include "gf2d_graphics.h"
+TTF_Font *font = NULL;
+void gf2d_draw_init() {
+    if (TTF_Init() < 0) {
+        slog("TTF_Init failed: %s", TTF_GetError());
+        return;
+    }
+}
+
+void gf2d_draw_cleanup() {
+    if (font != NULL) {
+        TTF_CloseFont(font);
+        font = NULL;
+    }
+    TTF_Quit();
+}
+
+void gf2d_render_text(const char *text, Vector2D position, SDL_Color color, float scale) {
+    if (font == NULL) {
+        font = TTF_OpenFont("path/to/your/font.ttf", 24);
+        if (font == NULL) {
+            SDL_Log("Failed to load font: %s", TTF_GetError());
+            return;
+        }
+    }
+
+    SDL_Surface *text_surface = TTF_RenderText_Blended(font, text, color);
+    if (text_surface == NULL) {
+        SDL_Log("Failed to render text: %s", TTF_GetError());
+        return;
+    }
+
+    SDL_Texture *text_texture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), text_surface);
+    SDL_FreeSurface(text_surface);
+
+    SDL_Rect dest_rect = {
+        position.x,
+        position.y,
+        text_surface->w * scale,
+        text_surface->h * scale
+    };
+
+    SDL_RenderCopy(gf2d_graphics_get_renderer(), text_texture, NULL, &dest_rect);
+    SDL_DestroyTexture(text_texture);
+}
 
 void gf2d_draw_shape(Shape shape,Color color,Vector2D offset)
 {
