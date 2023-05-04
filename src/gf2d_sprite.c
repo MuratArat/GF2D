@@ -285,7 +285,8 @@ void gf2d_sprite_draw_image(Sprite *image,Vector2D position)
     gf2d_sprite_draw(
         image,
         position,
-        NULL,
+        1,
+        1,
         NULL,
         NULL,
         NULL,
@@ -296,7 +297,8 @@ void gf2d_sprite_draw_image(Sprite *image,Vector2D position)
 void gf2d_sprite_draw(
     Sprite * sprite,
     Vector2D position,
-    Vector2D * scale,
+    double  scale_x,
+    double  scale_y,
     Vector2D * center,
     float    * rotation,
     Vector2D * flip,
@@ -306,7 +308,8 @@ void gf2d_sprite_draw(
     gf2d_sprite_render(
         sprite,
         position,
-        scale,
+        scale_x,
+        scale_y,
         center,
         rotation,
         flip,
@@ -318,7 +321,8 @@ void gf2d_sprite_draw(
 void gf2d_sprite_render(
     Sprite * sprite,
     Vector2D position,
-    Vector2D * scale,
+    double  scale_x,
+    double  scale_y,
     Vector2D * center,
     float    * rotation,
     Vector2D * flip,
@@ -343,17 +347,21 @@ void gf2d_sprite_render(
     {
         vector4d_copy(drawClip,(*clip));
     }
-    if (scale)
+    if (scale_x)
     {
-        vector2d_copy(scaleFactor,(*scale));
-        if (scale->x < 0)
+        scaleFactor.x = scale_x;
+        if (scale_x < 0)
         {
-            if (scale->x)flipFlags |= SDL_FLIP_HORIZONTAL;
+            flipFlags |= SDL_FLIP_HORIZONTAL;
             scaleFactor.x *= -1;
         }
-        if (scale->y < 0)
+    }
+    if (scale_y)
+    {
+        scaleFactor.y = scale_y;
+        if (scale_y < 0)
         {
-            if (scale->y)flipFlags |= SDL_FLIP_VERTICAL;
+            flipFlags |= SDL_FLIP_VERTICAL;
             scaleFactor.y *= -1;
         }
     }

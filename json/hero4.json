@@ -5,8 +5,8 @@
           "defense": 5,
           "dodge": 5,
           "maxhealth":100,
-          "health": 100,
+          "health": 99,
           "speed": 25,
-          "points": 0
+          "item_id": 0
           }
   
